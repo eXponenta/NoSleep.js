@@ -1,6 +1,7 @@
 var webpack = require('webpack')
 
 module.exports = {
+  mode: 'development',
   entry: {
     'NoSleep': `${__dirname}/src/index.js`,
     'NoSleep.min': `${__dirname}/src/index.js`
