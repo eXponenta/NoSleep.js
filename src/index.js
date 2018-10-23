@@ -7,7 +7,12 @@ const oldIOS = typeof navigator !== 'undefined' && parseFloat(
 ) < 10 && !window.MSStream
 
 class NoSleep {
+  get isEnabled () {
+    return this.enabled
+  }
+
   constructor () {
+    this.enabled = false
     if (oldIOS) {
       this.noSleepTimer = null
     } else {
@@ -33,12 +38,17 @@ class NoSleep {
         window.location.href = '/'
         window.setTimeout(window.stop, 0)
       }, 15000)
+      this.enabled = true
     } else {
-      this.noSleepVideo.play()
+      const playPromise = this.noSleepVideo.play()
+      if (playPromise) {
+        playPromise.then(_ => { this.enabled = true }).catch(_ => {})
+      }
     }
   }
 
   disable () {
+    this.enabled = false
     if (oldIOS) {
       if (this.noSleepTimer) {
         window.clearInterval(this.noSleepTimer)
