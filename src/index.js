@@ -7,6 +7,10 @@ const oldIOS = typeof navigator !== 'undefined' && parseFloat(
 ) < 10 && !window.MSStream
 
 class NoSleep {
+  get isEnabled () {
+    return this.enabled
+  }
+
   constructor () {
     this.enabled = false
     if (oldIOS) {
