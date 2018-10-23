@@ -34,7 +34,10 @@ class NoSleep {
         window.setTimeout(window.stop, 0)
       }, 15000)
     } else {
-      this.noSleepVideo.play()
+      const playPromise = this.noSleepVideo.play()
+      if (playPromise) {
+        playPromise.catch(error => { throw error })
+      }
     }
   }
 
