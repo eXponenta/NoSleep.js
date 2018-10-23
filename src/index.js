@@ -8,6 +8,7 @@ const oldIOS = typeof navigator !== 'undefined' && parseFloat(
 
 class NoSleep {
   constructor () {
+    this.enabled = false
     if (oldIOS) {
       this.noSleepTimer = null
     } else {
@@ -33,15 +34,17 @@ class NoSleep {
         window.location.href = '/'
         window.setTimeout(window.stop, 0)
       }, 15000)
+      this.enabled = true
     } else {
       const playPromise = this.noSleepVideo.play()
       if (playPromise) {
-        playPromise.catch(error => { throw error })
+        playPromise.then(_ => { this.enabled = true }).catch(_ => {})
       }
     }
   }
 
   disable () {
+    this.enabled = false
     if (oldIOS) {
       if (this.noSleepTimer) {
         window.clearInterval(this.noSleepTimer)
