@@ -1,20 +1,6 @@
 # NoSleep.js
 
-Prevent display sleep and enable wake lock in all Android and iOS web browsers.
-
-Check out the [live demo](https://richtr.github.io/NoSleep.js/example) in any Android or iOS web browser.
-
-## Installation
-
-This library is available on [Bower](http://bower.io/) as **nosleep**.
-
-    $> bower install nosleep
-
-This package is published to npm as **nosleep.js** and can be installed with:
-
-    $> npm install nosleep.js
-
-Alternatively, you can manually add [NoSleep.js](https://github.com/richtr/NoSleep.js/blob/master/dist/NoSleep.js) to your project (or the [minified version](https://github.com/richtr/NoSleep.js/blob/master/dist/NoSleep.min.js)).
+Prevent display sleep and enable wake lock in all Android and iOS web browsers. Forked from the original repository that no longer is maintained.
 
 ## Build from source
 
@@ -43,6 +29,14 @@ document.addEventListener('click', enableNoSleep, false);
 noSleep.disable();
 ```
 
+Optionally, you may pass a title to the `NoSleep` object. On iOS devices, when the user turns the screen off and then back on, this title is what will be displayed to them. This is useful for branding purposes, as you would want the name of your application to appear, as opposed to the default `No Sleep` title, or even worse, a random data string.
+
+```js
+var noSleep = new NoSleep('My Application Title');
+```
+
 ## License
+
+MIT. Copyright (c) Muhammad Abdul-Rahim
 
 MIT. Copyright (c) Rich Tibbett
