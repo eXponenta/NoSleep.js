@@ -11,7 +11,7 @@ class NoSleep {
     return this.enabled
   }
 
-  constructor () {
+  constructor (title = 'No Sleep') {
     this.enabled = false
     if (oldIOS) {
       this.noSleepTimer = null
@@ -19,7 +19,7 @@ class NoSleep {
       // Set up no sleep video element
       this.noSleepVideo = document.createElement('video')
 
-      this.noSleepVideo.setAttribute('title', 'No Sleep')
+      this.noSleepVideo.setAttribute('title', title)
       this.noSleepVideo.setAttribute('playsinline', '')
       this.noSleepVideo.setAttribute('src', mediaFile)
 
