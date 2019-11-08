@@ -28,6 +28,18 @@
           document.body.style.backgroundColor = "";
         }
       }, false);
+	  
+	const state = document.visibilityState;
+
+	document.addEventListener('visibilitychange', () => {
+	  console.log(document.visibilityState);
+	  if ( document.visibilityState == "visible" ) {
+	    //reload if the page comes back to visible
+	    //window.location.reload();   //Reload the whole page or use the commands below.
+	    noSleep.enable(); // keep the screen on!
+	    wakeLockEnabled = true;		  	
+	  }
+	})
     </script>
 
     <!-- Github Ribbon -->
