@@ -1,6 +1,7 @@
 var webpack = require('webpack')
 
 module.exports = {
+  mode: 'development',
   entry: {
     'NoSleep': `${__dirname}/src/index.js`,
     'NoSleep.min': `${__dirname}/src/index.js`
@@ -12,35 +13,31 @@ module.exports = {
     libraryTarget: 'umd'
   },
   module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        loader: 'standard-loader',
-        exclude: /(node_modules|bower_components)/,
+    rules: [{
+      enforce: 'pre',
+      test: /\.jsx?$/,
+      loader: 'standard-loader',
+      exclude: /(node_modules|bower_components)/,
+      options: {
+        parser: 'babel-eslint'
+      }
+    },
+    {
+      test: /\.js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
         options: {
-          parser: 'babel-eslint'
-        }
-      },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
-          }
+          presets: ['env']
         }
       }
+    }
     ]
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       include: /\.min\.js$/,
       minimize: true
-    }),
-    new webpack.BannerPlugin({
-      banner: `[name].js v0.9.0 - git.io/vfn01 - Rich Tibbett - MIT license`
     })
   ]
 }

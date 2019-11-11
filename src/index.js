@@ -7,17 +7,20 @@ const oldIOS = typeof navigator !== 'undefined' && parseFloat(
 ) < 10 && !window.MSStream
 
 class NoSleep {
-  constructor () {
-    this.enabled = false
+  get isEnabled () {
+    return this.enabled
+  }
 
+  constructor (title = 'No Sleep') {
+    this.enabled = false
     if (oldIOS) {
       this.noSleepTimer = null
     } else {
       // Set up no sleep video element
       this.noSleepVideo = document.createElement('video')
 
+      this.noSleepVideo.setAttribute('title', title)
       this.noSleepVideo.setAttribute('muted', '')
-      this.noSleepVideo.setAttribute('title', 'No Sleep')
       this.noSleepVideo.setAttribute('playsinline', '')
 
       this._addSourceToVideo(this.noSleepVideo, 'webm', webm)
@@ -63,8 +66,12 @@ class NoSleep {
           window.setTimeout(window.stop, 0)
         }
       }, 15000)
+      this.enabled = true
     } else {
-      this.noSleepVideo.play()
+      const playPromise = this.noSleepVideo.play()
+      if (playPromise) {
+        playPromise.then(_ => { this.enabled = true }).catch(_ => {})
+      }
     }
   }
 
