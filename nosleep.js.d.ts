@@ -1,7 +1,7 @@
 declare class NoSleep {
-  constructor();
+  constructor(title: string);
 
-  enable(): void;
+  enable(): Promise<any>;
 
   disable(): void;
 

@@ -12,34 +12,23 @@
     "display",
     "sleep"
   ],
-  "main": "dist/NoSleep.min.js",
-  "module": "src/index.js",
+  "main": "src/index.js",
+  "module": "dist/nosleep.mjs",
+  "unpkg": "dist/nosleep.umd.mjs",
+  "browser": "dist/nosleep.js",
   "types": "nosleep.js.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/shinyshoe/NoSleep.js.git"
   },
   "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-eslint": "^7.2.3",
-    "babel-loader": "^7.1.1",
-    "babel-preset-env": "^1.7.0",
-    "eslint": "^5.9.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^8.0.0",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "standard": "^10.0.2",
-    "standard-loader": "^6.0.1",
-    "webpack": "^3.0.0"
+    "rollup-plugin-terser": "^5.1.2"
   },
   "homepage": "https://github.com/shinyshoe/NoSleep.js",
   "bugs": {
     "url": "https://github.com/shinyshoe/NoSleep.js/issues"
   },
   "scripts": {
-    "lint": "eslint src",
-    "build": "npm run lint && webpack"
+    "build": "rollup -c"
   }
 }
